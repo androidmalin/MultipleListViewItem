@@ -7,9 +7,15 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 /**
- * link:http://www.jcodecraeer.com/a/anzhuokaifa/2012/0802/334.html
+ * malin
+ *
+ * link:
+ * http://www.jcodecraeer.com/a/anzhuokaifa/2012/0802/334.html
  * http://blog.csdn.net/lmj623565791/article/details/24333277
  * http://www.imlongluo.com/blog/?p=263
+ * http://www.longdw.com/listview-category-getitemviewtype-getviewtypecount/
+ * http://blog.csdn.net/guolin_blog/article/details/44996879
+ * http://blog.csdn.net/lmj623565791/article/details/24333277
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.lv);
         mAdapter = new MyAdapter(getApplicationContext());
         mListView.setAdapter(mAdapter);
-
         mAdapter.setData(getMessage());
+
     }
 
 

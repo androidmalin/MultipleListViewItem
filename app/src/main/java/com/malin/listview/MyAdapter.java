@@ -21,16 +21,20 @@ public class MyAdapter extends BaseAdapter {
 
     public static final int VALUE_TIME_ONE = 0;// 2种不同的布局
     public static final int VALUE_LEFT_TWO = 1;
-    private static final int ITEM_COUTS = 2;
+    private static final int ITEM_COUNTS = 2;
 
     private LayoutInflater mInflater;
 
     private List<Bean> myList;
 
+    public MyAdapter(Context context, ArrayList<Bean> list) {
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.myList = list;
+    }
+
     public MyAdapter(Context context) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
 
     public void setData(ArrayList<Bean> bean) {
         if (myList == null) {
@@ -72,7 +76,7 @@ public class MyAdapter extends BaseAdapter {
                     convertView = mInflater.inflate(R.layout.item_one, null);
                     holderOne.tvOne = (TextView) convertView.findViewById(R.id.tv_one_item);
                     convertView.setTag(holderOne);
-                    Log.d("baseAdapter", "convertView == null 类型1 position:" + position + " "+convertView.toString());
+                    Log.d("baseAdapter", "convertView == null 类型1 position:" + position + " " + convertView.toString());
                     break;
                 }
 
@@ -81,7 +85,7 @@ public class MyAdapter extends BaseAdapter {
                     convertView = mInflater.inflate(R.layout.item_two, null);
                     holderTwo.tvTwo = (TextView) convertView.findViewById(R.id.tv_two_item);
                     convertView.setTag(holderTwo);
-                    Log.d("baseAdapter", "convertView == null 类型2 position:" + position + " "+convertView.toString());
+                    Log.d("baseAdapter", "convertView == null 类型2 position:" + position + " " + convertView.toString());
                     break;
                 }
 
@@ -96,17 +100,17 @@ public class MyAdapter extends BaseAdapter {
             }
 
         } else {
-           // Log.d("baseAdapter", "position:" + position +" "+ convertView.toString());
+            // Log.d("baseAdapter", "position:" + position +" "+ convertView.toString());
             switch (type) {
                 case VALUE_TIME_ONE: {
                     holderOne = (ViewHolderOne) convertView.getTag();
-                    Log.d("baseAdapter", "convertView != null 类型1 position:" + position + " "+convertView.toString());
+                    Log.d("baseAdapter", "convertView != null 类型1 position:" + position + " " + convertView.toString());
                     break;
                 }
 
                 case VALUE_LEFT_TWO: {
                     holderTwo = (ViewHolderTwo) convertView.getTag();
-                    Log.d("baseAdapter", "convertView != null 类型2 position:" + position + " "+convertView.toString());
+                    Log.d("baseAdapter", "convertView != null 类型2 position:" + position + " " + convertView.toString());
                     break;
                 }
                 default: {
@@ -119,12 +123,12 @@ public class MyAdapter extends BaseAdapter {
 
         switch (type) {
             case VALUE_TIME_ONE: {
-                holderOne.tvOne.setText(bean.name);
+                holderOne.tvOne.setText(bean.name + convertView.toString());
                 break;
             }
 
             case VALUE_LEFT_TWO: {
-                holderTwo.tvTwo.setText(bean.name);
+                holderTwo.tvTwo.setText(bean.name+convertView.toString());
                 break;
             }
             default: {
@@ -154,13 +158,12 @@ public class MyAdapter extends BaseAdapter {
      */
     @Override
     public int getViewTypeCount() {
-        return ITEM_COUTS;
+        return ITEM_COUNTS;
     }
 
     public static class ViewHolderOne {
         public TextView tvOne;// 左边的文字
     }
-
 
 
     public static class ViewHolderTwo {
