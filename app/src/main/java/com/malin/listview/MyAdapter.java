@@ -1,6 +1,7 @@
 package com.malin.listview;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,7 @@ public class MyAdapter extends BaseAdapter {
         ViewHolderOne holderOne = null;
         ViewHolderTwo holderTwo = null;
 
-
+        String address = StringUtil.getInstance().getShortAddress(convertView==null?null:convertView.toString());
         if (convertView == null) {
             switch (type) {
                 case VALUE_TIME_ONE: {
@@ -100,7 +101,7 @@ public class MyAdapter extends BaseAdapter {
             }
 
         } else {
-            // Log.d("baseAdapter", "position:" + position +" "+ convertView.toString());
+//             Log.d("baseAdapter", "position:" + position +" "+ convertView.toString()));
             switch (type) {
                 case VALUE_TIME_ONE: {
                     holderOne = (ViewHolderOne) convertView.getTag();
@@ -114,6 +115,7 @@ public class MyAdapter extends BaseAdapter {
                     break;
                 }
                 default: {
+
                     break;
                 }
 
@@ -121,14 +123,21 @@ public class MyAdapter extends BaseAdapter {
         }
 
 
+        String result= new StringBuffer("").append(bean.id).append((address==null)?"null":address).toString();
+
+
+        String add = (TextUtils.isEmpty(address))?"null":address;
+
         switch (type) {
             case VALUE_TIME_ONE: {
-                holderOne.tvOne.setText(bean.name + convertView.toString());
+//                holderOne.tvOne.setText(bean.id+"  "+add);
+                holderOne.tvOne.setText(bean.name);
                 break;
             }
 
             case VALUE_LEFT_TWO: {
-                holderTwo.tvTwo.setText(bean.name+convertView.toString());
+//                holderTwo.tvTwo.setText(bean.id+"  "+add);
+                holderTwo.tvTwo.setText(bean.name);
                 break;
             }
             default: {
@@ -169,6 +178,7 @@ public class MyAdapter extends BaseAdapter {
     public static class ViewHolderTwo {
         public TextView tvTwo;// 右边的文字
     }
+
 
 /**
  //第一屏幕只能显示4个（0,1,2,3）

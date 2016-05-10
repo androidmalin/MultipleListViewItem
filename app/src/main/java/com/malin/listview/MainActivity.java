@@ -2,9 +2,8 @@ package com.malin.listview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 /**
  * malin
@@ -29,21 +28,9 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.lv);
         mAdapter = new MyAdapter(getApplicationContext());
         mListView.setAdapter(mAdapter);
-        mAdapter.setData(getMessage());
+        mAdapter.setData(DataFactory.getData());
 
+        Log.d("SSSS",CommonUtil.toString(mListView));
     }
 
-
-    private ArrayList<Bean> getMessage() {
-        ArrayList<Bean> list = new ArrayList<Bean>();
-        Bean bean = null;
-        for (int i = 0; i < 50; i++) {
-            bean = new Bean();
-            bean.id = i;
-            bean.type = i % 2;
-            bean.name = new StringBuffer("name:").append(i).toString();
-            list.add(i, bean);
-        }
-        return list;
-    }
 }
